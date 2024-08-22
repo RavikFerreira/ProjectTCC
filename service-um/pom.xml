@@ -90,18 +90,6 @@
           <groupId>org.projectlombok</groupId>
           <artifactId>lombok</artifactId>
       </dependency>
-    <dependency>
-      <groupId>io.micronaut.micrometer</groupId>
-      <artifactId>micronaut-micrometer-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.micronaut.micrometer</groupId>
-      <artifactId>micronaut-micrometer-registry-prometheus</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.micronaut</groupId>
-      <artifactId>micronaut-management</artifactId>
-    </dependency>
 
   </dependencies>
   <build>
