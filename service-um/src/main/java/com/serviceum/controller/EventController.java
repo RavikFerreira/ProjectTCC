@@ -14,7 +14,7 @@ public class EventController {
     @Inject
     private EventService eventService;
 
-    @Get()
+    @Get("/{id}")
     public Event findById(@QueryValue String id){
         return eventService.findById(id);
     }
