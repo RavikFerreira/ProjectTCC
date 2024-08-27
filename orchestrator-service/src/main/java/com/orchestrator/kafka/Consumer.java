@@ -18,6 +18,10 @@ public class Consumer {
     @Inject
     private JsonUtil jsonUtil;
 
+    @Topic("${kafka.topic.start}")
+    public void consumerStartEvent(String payload){
+        LOG.info("Receiving event {} from start topic" , payload); Event event = jsonUtil.toEvent(payload); orchestratorService.start(event);
+    }
     @Topic("${kafka.topic.orchestrator}")
     public void consumerOrchestratorEvent(String payload){
         LOG.info("Receiving event {} from orchestrator topic" , payload); Event event = jsonUtil.toEvent(payload); orchestratorService.continueSaga(event);
