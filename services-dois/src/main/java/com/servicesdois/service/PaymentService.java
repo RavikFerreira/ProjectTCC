@@ -35,9 +35,7 @@ public class PaymentService {
             throw new RuntimeException("There's another Id for this validation.");
         }
     }
-    public void save(Payment payment){
-        paymentRepository.update(payment);
-    }
+
     private double calculateAmount(Event event){
         return event.getPayload().getProducts().stream() .map(product -> product.getPrice())
                 .reduce(0.0, Double::sum);
@@ -48,7 +46,7 @@ public class PaymentService {
         Payment payment = new Payment();
         payment.setId(event.getPayload().getId());
         payment.setTotalAmount(totalAmount);
-        save(payment);
+        paymentRepository.save(payment);
     }
 
     private void validateAmount(double amount){
@@ -58,7 +56,7 @@ public class PaymentService {
     }
     private void changePaymentToSuccess(Payment payment){
         payment.setStatus(SUCCESS);
-        save(payment);
+        paymentRepository.update(payment);
     }
 
     private void addHistory(Event event, String message){
@@ -83,7 +81,7 @@ public class PaymentService {
     private void changePaymentStatusToRefund(Event event){
         Payment payment = findById(event);
         payment.setStatus(EPaymentStatus.REFUND);
-        save(payment);
+        paymentRepository.update(payment);
     }
     public void realizedRefund(Event event){
         event.setStatus(String.valueOf(FAIL)); event.setSource("PAYMENT_SERVICE");
