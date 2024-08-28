@@ -117,9 +117,14 @@
               <version>${micronaut.core.version}</version>
             </path>
             <path>
-              <groupId>io.micronaut.serde</groupId>
-              <artifactId>micronaut-serde-processor</artifactId>
-              <version>${micronaut.serialization.version}</version>
+              <groupId>io.micronaut.data</groupId>
+              <artifactId>micronaut-data-processor</artifactId>
+              <version>4.8.1</version>
+            </path>
+            <path>
+              <groupId>io.micronaut.data</groupId>
+              <artifactId>micronaut-data-document-processor</artifactId>
+              <version>4.8.1</version>
               <exclusions>
                 <exclusion>
                   <groupId>io.micronaut</groupId>
