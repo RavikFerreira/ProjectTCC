@@ -1,9 +1,6 @@
 package com.orchestrator.dto;
 
 
-import io.micronaut.data.annotation.GeneratedValue;
-import io.micronaut.data.annotation.Id;
-import io.micronaut.data.annotation.MappedEntity;
 import io.micronaut.serde.annotation.Serdeable;
 
 import java.io.Serial;
@@ -11,13 +8,10 @@ import java.io.Serializable;
 import java.util.List;
 
 @Serdeable
-@MappedEntity
 public class Order implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue
     private String id;
     private List<Product> products;
 
