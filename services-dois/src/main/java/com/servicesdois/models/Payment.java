@@ -1,7 +1,6 @@
 package com.servicesdois.models;
 
 import com.servicesdois.enums.EPaymentStatus;
-import io.micronaut.data.annotation.GeneratedValue;
 import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;
 import io.micronaut.data.annotation.event.PrePersist;
@@ -18,7 +17,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Payment {
     @Id
-    @GeneratedValue
     private String id;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
