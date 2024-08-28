@@ -11,7 +11,6 @@ import static io.micronaut.core.util.CollectionUtils.isEmpty;
 @Serdeable
 public class Event {
 
-
     private String id;
     private Order payload;
     private String source;
