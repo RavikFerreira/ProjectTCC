@@ -56,7 +56,7 @@ services:
       - orchestrator-service
     environment:
       - KAFKA_BOOTSTRAP_SERVERS= kafka:29092
-      - MONGODB_URI=mongodb://mongo:27017/meu_banco
+      - MONGODB_URI=mongodb://mongo:27017/orders-db
     ports:
       - "8082:8082"
 
@@ -70,7 +70,7 @@ services:
       - orchestrator-service
     environment:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
-      - MONGODB_URI=mongodb://mongo:27017/meu_banco
+      - MONGODB_URI=mongodb://mongo:27017/orders-db
     ports:
       - "8084:8084"
 
