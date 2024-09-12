@@ -94,136 +94,163 @@ Também é importante adicionar as configurações de escaneamento de entidades 
     jpa.default.entity-scan.packages = com.nome-do-pacote.models
 ````Essas configurações vai servir para escanear todas as classes do pacote que foi passado no caminho da configuração.````
 
-Veja <link>https://github.com/RavikFerreira/ProjectTCC/tree/feature/service-um no projeto as classes no pacote models e das demais configurações mencionadas até aqui.
+Veja [aqui](https://github.com/RavikFerreira/ProjectTCC/tree/feature/service-um) no projeto as classes no pacote models e das demais configurações mencionadas até aqui.
 
+O próximo a ser criado é o repositório, que é uma classe responsável por "conversar" com a base de dados. No pacote **repository**, deve ser criado uma interface, a estrutura mais usada para isso é o **nome-da-entidade + repository** em **CamelCase Ex: EntidadeRepository.**
 
-O próximo a ser criado é o repositório, que é uma classe responsável por "conversar" com a base de dados. No pacote repository, deve ser criado uma interface, a estrutura mais usada para isso é o nome da entidade + repository em CamelCase Ex: EntidadeRepository.
-
-Depois disso, deve ser feito a conexão com o banco de dados, e para isso existem algumas configurações que devem ser inseridas, mas antes disso temos que adicionar a dependência do banco de dados PostgreSQL:
-<dependency>
-<groupId>org.postgresql</groupId>
-<artifactId>postgresql</artifactId>
-<scope>runtime</scope>
-</dependency>
+Depois disso, deve ser feito a conexão com o banco de dados, e para isso existem algumas configurações que devem ser inseridas, mas antes disso temos que adicionar a dependência do banco de dados **PostgreSQL**:
+       
+     <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <scope>runtime</scope>
+    </dependency>
 
 Com a criação da interface, ela deve ser anotada com:
-@Repository // essa anotação serve para que o Micronaut entenda que essa interface é um repository. Essa interface deve estender o JpaRepository indicando a entidade e o tipo da chave que ela contém. Ex: extends JpaRepository<Entidade, Long>, isso vai fazer com que o Jpa mapeie toda a classe criando as tabelas automaticamente.
+* **@Repository** ````Essa anotação serve para que o Micronaut entenda que essa interface é um repository. Essa interface deve estender o JpaRepository indicando a entidade e o tipo da chave que ela contém. Ex: extends JpaRepository<Entidade, Long>, isso vai fazer com que o Jpa mapeie toda a classe criando as tabelas automaticamente.````
 
-Da mesma forma para o MongoDB porém, a diferença é que ao invés de usar @Repository usa se @MongoRepository(databaseName = “nome-da-collection-do-banco”)  e também não estende ao JpaRepository e sim ao CrudRepository.
-Mas antes deve ser adicionado às dependências do MongoDB:
-<dependency>
-<groupId>io.micronaut.data</groupId>
-<artifactId>micronaut-data-mongodb</artifactId>
-<scope>compile</scope>
-</dependency>
-<dependency>
-<groupId>org.mongodb</groupId>
-<artifactId>mongodb-driver-sync</artifactId>
-<scope>runtime</scope>
-</dependency>
+  * Da mesma forma para o **MongoDB** porém, a diferença é que ao invés de usar **@Repository** usa se **@MongoRepository(databaseName = “nome-da-collection-do-banco”)**  e também não estende ao **JpaRepository** e sim ao **CrudRepository**.
+  Mas antes deve ser adicionado às dependências do **MongoDB**:
 
-Com isso, vamos criar dois repositórios, OrderRepository e ProductRepository que vão salvar todos os dados que foram inseridos nas entidades e salvar no banco de dados. LEMBRETE: todos os repositórios devem estar na mesma databaseName.
+        <dependency>
+            <groupId>io.micronaut.data</groupId>
+            <artifactId>micronaut-data-mongodb</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+Com isso, vamos criar dois repositórios, **OrderRepository e ProductRepository** que vão salvar todos os dados que foram inseridos nas entidades e salvar no banco de dados. LEMBRETE: todos os repositórios devem estar na mesma databaseName.
 
 
 Com isso, dentro do resources/application.properties/yaml deve adicionar as seguintes configurações, caso esteja usando PostgreSQL:
-Para YAML:
-datasources:
-default:
-url: jdbc:postgresql://localhost:5432/nome-do-banco
-username: postgres
-password: postgres
-driver-class-name: org.postgresql.Driver
-dialect:
-io.micronaut.data.jdbc.postgres.PostgresDialect
+**Para YAML:**
 
-Para PROPERTIES:
-datasources.default.url=jdbc:postgresql://localhost:5432/nome-do-banco
-datasources.default.username= postgres
-datasources.default.password= postgres
-datasources.default.driver-class-name= org.postgresql.Driver
-datasources.default.dialect=io.micronaut.data.jdbc.postgres.PostgresDialect
+    datasources:
+        default:
+            url: jdbc:postgresql://localhost:5432/nome-do-banco
+            username: postgres
+            password: postgres
+            driver-class-name: org.postgresql.Driver
+            dialect:
+            io.micronaut.data.jdbc.postgres.PostgresDialect
 
-Para MongoDB: dentro do resources/application.properties/yaml deve adicionar as seguintes configurações:
-Para YAML:
-mongodb:
-uri: mongodb://localhost:27017/nome-do-banco
+**Para PROPERTIES:**
 
-Para PROPERTIES:
-mongodb.uri= mongodb://localhost:27017/nome-do-banco
+    datasources.default.url=jdbc:postgresql://localhost:5432/nome-do-banco
+    datasources.default.username= postgres
+    datasources.default.password= postgres
+    datasources.default.driver-class-name= org.postgresql.Driver
+    datasources.default.dialect=io.micronaut.data.jdbc.postgres.PostgresDialect
 
-E também deve ser adicionado um path de processamento de dados, e mudar a tag de processamento <annotationProcessorPaths combine.children="append"> para <annotationProcessorPaths combine.self="override">,  então, dentro do pom.xml na tag <annotationProcessorPaths combine.self="override"> adicione esse path:
-<path>
-<groupId>io.micronaut.data</groupId>
-<artifactId>micronaut-data-document-processor</artifactId>
-<version>4.8.1</version>
-<exclusions>
-<exclusion>
-<groupId>io.micronaut</groupId>
-<artifactId>micronaut-inject</artifactId>
-</exclusion>
-</exclusions>
-</path>
+Para **MongoDB**: dentro do **resources/application.properties/yaml** deve adicionar as seguintes configurações:
+**Para YAML:**
+
+    mongodb:
+        uri: mongodb://localhost:27017/nome-do-banco
+
+**Para PROPERTIES:**
+
+    mongodb.uri= mongodb://localhost:27017/nome-do-banco
+
+E também deve ser adicionado um path de processamento de dados, e mudar a tag de processamento:
+
+    <annotationProcessorPaths combine.children="append"> 
+para:
+
+    <annotationProcessorPaths combine.self="override">
+
+então, dentro do pom.xml na tag:
+
+    <annotationProcessorPaths combine.self="override">
+
+adicione esse path:
+
+    <path>
+        <groupId>io.micronaut.data</groupId>
+        <artifactId>micronaut-data-document-processor</artifactId>
+        <version>4.8.1</version>
+    <exclusions>
+        <exclusion>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-inject</artifactId>
+        </exclusion>
+    </exclusions>
+    </path>
 E também deve ser adicionado esse <plugin>:
-<plugin>
-<groupId>org.apache.maven.plugins</groupId>
-<artifactId>maven-surefire-plugin</artifactId>
-<version>3.3.1</version>
-</plugin>
 
-Veja no repositório exemplo como ficaram estas interfaces e também os arquivos de configuração mencionados acima.
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.3.1</version>
+    </plugin>
 
-Agora vamos criar a camada de serviço, que vai ser responsável por toda regra de negócio da aplicação, então, no pacote service, crie uma classe usando aquela mesma estrutura, o nome da entidade + service em CamelCase Ex: EntidadeService.
-Anote a classe com @Singleton que serve para que o Micronaut entenda que essa classe é uma classe de serviço.
-Faça a injeção de dependência da interface do repository:
-private OrderRepository orderRepository;
-E depois anote ela com @Inject que vai fazer com que o atributo seja injetado e criado o construtor
-Com isso, vamos criar dois métodos: o findAll e addOrder , findAll vai servir para mostrar todos os dados que foram adicionados dentro do banco e o addOrder vai adicionar dados dentro do banco. Então:
+Veja no [repositório](https://github.com/RavikFerreira/ProjectTCC/tree/feature/service-um) exemplo como ficaram estas interfaces e também os arquivos de configuração mencionados acima.
 
-public List<Order> findAll (){
-return orderRepository.findAll();
-} // esse método findAll() já vem no JpaRepository ou no CrudRepository.
+Agora vamos criar a camada de serviço, que vai ser responsável por toda regra de negócio da aplicação, então, no pacote service, crie uma classe usando aquela mesma estrutura, o **nome da entidade + service em CamelCase Ex: EntidadeService.**
+* Anote a classe com **@Singleton** ````Serve para que o Micronaut entenda que essa classe é uma classe de serviço.````
+* Faça a injeção de dependência da interface do repository:
+
+      private OrderRepository orderRepository;
+* E depois anote ela com **@Inject** ````Vai fazer com que o atributo seja injetado e criado o construtor````
+
+Com isso, vamos criar dois métodos: o **findAll e addOrder** , findAll vai servir para mostrar todos os dados que foram adicionados dentro do banco e o addOrder vai adicionar dados dentro do banco. Então:
+
+    public List<Order> findAll (){
+        return orderRepository.findAll();
+    } // esse método findAll() já vem no JpaRepository ou no CrudRepository.
 
 
-public Order addOrder (Order order){
-return orderRepository.save(order);
-} // esse método save() já vem no JpaRepository ou no CrudRepository.
+    public Order addOrder (Order order){
+        return orderRepository.save(order);
+    } // esse método save() já vem no JpaRepository ou no CrudRepository.
 
 Da mesma forma vamos fazer com ProductService:
-public List<Product> findAll (){
-return productRepository.findAll();
-}
 
-public Order addProduct (Product product){
-return productRepository.save(product);
-}
+    public List<Product> findAll (){
+        return productRepository.findAll();
+    }
+    
+    public Order addProduct (Product product){
+        return productRepository.save(product);
+    }
 
-Veja como ficou a implementação dos serviços no repositório do nosso exemplo.
-Agora por fim a camada de controle,que vai ser responsável por todo controle dos caminhos das requisições, então, no pacote controller, crie uma classe usando aquela mesma estrutura, o nome da entidade + controller em CamelCase Ex: EntidadeController.
-Anote a classe com @Controller(“orders”) que serve para que o Micronaut entenda que essa classe é uma classe de controle.
-Faça a injeção de dependência da classe de serviço:
-private OrderService orderService;
-E depois anote ela com @Inject que vai fazer com que o atributo seja injetado e criado o construtor.
+Veja como ficou a implementação dos serviços no [repositório](https://github.com/RavikFerreira/ProjectTCC/tree/feature/service-um) do nosso exemplo.
+Agora por fim a camada de controle,que vai ser responsável por todo controle dos caminhos das requisições, então, no pacote controller, crie uma classe usando aquela mesma estrutura, o **nome da entidade + controller em CamelCase Ex: EntidadeController.**
+* Anote a classe com **@Controller(“orders”)** ````Serve para que o Micronaut entenda que essa classe é uma classe de controle.````
+* Faça a injeção de dependência da classe de serviço:
 
-Com isso, vamos criar dois métodos: o findAll e addOrder , findAll vai servir para trazer toda a regra de negócio que foi feita no findAll do  serviço e o addOrder a mesma coisa. Então:
+      private OrderService orderService;
+  * E depois anote ela com **@Inject** que vai fazer com que o atributo seja injetado e criado o construtor.
 
-@Get()
-public List<Order> findAll (){
-return orderService.findAll();
-}
+Com isso, vamos criar dois métodos: o **findAll e addOrder**, findAll vai servir para trazer toda a regra de negócio que foi feita no findAll do  serviço e o addOrder a mesma coisa. Então:
 
-@Post()
-public Order addOrder (@Body Order order){
-return orderService.addOrder(order);
-}
+    @Get()
+    public List<Order> findAll (){
+        return orderService.findAll();
+    }
+    
+    @Post()
+    public Order addOrder (@Body Order order){
+        return orderService.addOrder(order);
+    }
 
-E em cima do método deve passar o tipo de método HTTP que vai receber um objeto e ao mesmo tempo salvar ele no banco, o @Body que serve para que o Micronaut entenda que o método está recebendo um objeto como parâmetro.
+E em cima do método deve passar o tipo de método HTTP que vai receber um objeto e ao mesmo tempo salvar ele no banco, o **@Body** que serve para que o Micronaut entenda que o método está recebendo um objeto como parâmetro.
 
-Da mesma forma se faz com ProductController.
+Da mesma forma se faz com **ProductController**.
 
-Lembrar também de adicionar a porta em que o projeto vai rodar manualmente em  resources/application.properties/yaml. usando o comando:
-micronaut.server.port=8080 // para .properties
-micronaut:
-server:
-port: 8080 // para .yaml
+Lembrar também de adicionar a porta em que o projeto vai rodar manualmente em  **resources/application.properties/yaml**. usando o comando:
+**Para PROPERTIES:**
 
-Com isso, já podemos rodar o projeto, segue link do repositório pronto e funcionando.
+    micronaut.server.port=8080
+
+**Para YAML:**
+
+    micronaut:
+        server:
+            port: 8080
+
+Com isso, já podemos rodar o projeto, segue [link](https://github.com/RavikFerreira/ProjectTCC/tree/feature/service-um) do repositório pronto e funcionando.
