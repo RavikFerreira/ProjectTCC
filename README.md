@@ -81,6 +81,7 @@ E para finalizar a parte dos **models** deve se fazer a **introspecção** das e
 * **@Introspected(package = “com.caminho-do-pacote-das-entidades” , includedAnnotations = Entity.class)** ````Isso vai introspectar todas as classes anotadas com @Entity no caminho que foi passado.````
 
 Também é importante adicionar as configurações de escaneamento de entidades do **JPA** no **resources/application.properties/yaml**:
+
 **Para YAML:**
 
     jpa: 
@@ -109,19 +110,19 @@ Depois disso, deve ser feito a conexão com o banco de dados, e para isso existe
 Com a criação da interface, ela deve ser anotada com:
 * **@Repository** ````Essa anotação serve para que o Micronaut entenda que essa interface é um repository. Essa interface deve estender o JpaRepository indicando a entidade e o tipo da chave que ela contém. Ex: extends JpaRepository<Entidade, Long>, isso vai fazer com que o Jpa mapeie toda a classe criando as tabelas automaticamente.````
 
-  * Da mesma forma para o **MongoDB** porém, a diferença é que ao invés de usar **@Repository** usa se **@MongoRepository(databaseName = “nome-da-collection-do-banco”)**  e também não estende ao **JpaRepository** e sim ao **CrudRepository**.
-  Mas antes deve ser adicionado às dependências do **MongoDB**:
+* Da mesma forma para o **MongoDB** porém, a diferença é que ao invés de usar **@Repository** usa se **@MongoRepository(databaseName = “nome-da-collection-do-banco”)**  e também não estende ao **JpaRepository** e sim ao **CrudRepository**.
+Mas antes deve ser adicionado às dependências do **MongoDB**:
 
-        <dependency>
-            <groupId>io.micronaut.data</groupId>
-            <artifactId>micronaut-data-mongodb</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver-sync</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+      <dependency>
+          <groupId>io.micronaut.data</groupId>
+          <artifactId>micronaut-data-mongodb</artifactId>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.mongodb</groupId>
+          <artifactId>mongodb-driver-sync</artifactId>
+          <scope>runtime</scope>
+      </dependency>
 
 Com isso, vamos criar dois repositórios, **OrderRepository e ProductRepository** que vão salvar todos os dados que foram inseridos nas entidades e salvar no banco de dados. LEMBRETE: todos os repositórios devem estar na mesma databaseName.
 
