@@ -1,39 +1,55 @@
-## Introdução
-Este trabalho explora a arquitetura de micro serviços por meio de uma API REST desenvolvida em Java utilizando o framework Micronaut. A API simula um sistema de pedidos e pagamentos, demonstrando como diferentes serviços podem se comunicar de forma assíncrona através de mensageria, utilizando o Apache Kafka, um sistema de streaming de eventos que garante a entrega eficiente de mensagens entre os serviços, sem que eles precisem conhecer diretamente uns aos outros.
+## 📖 Introdução
 
-As aplicações são executadas em containers Docker, que proporcionam ambientes isolados e consistentes, facilitando a implantação e escalabilidade dos micro serviços. O foco deste trabalho está em analisar o comportamento dessas aplicações em um ambiente distribuído, com ênfase na coleta de métricas em tempo real, usando o Micrometer, uma biblioteca que integra métricas de desempenho diretamente no Micronaut. Essas métricas são armazenadas e monitoradas com o Prometheus, uma plataforma de monitoramento e alerta, e visualizadas no Grafana, uma ferramenta de dashboards interativos que facilita a análise dos dados, o diagnóstico de problemas e a manutenção contínua do sistema.
-## Tecnologias Utilizadas
+Este projeto explora a arquitetura de **microserviços** através de uma API REST desenvolvida em **Java** com o framework **Micronaut**. Ele simula um sistema de pedidos e pagamentos, onde diferentes serviços se comunicam de maneira **assíncrona** utilizando o **Apache Kafka**, um sistema de streaming de eventos. Isso permite que os serviços troquem mensagens de forma eficiente, sem a necessidade de conhecerem diretamente uns aos outros.
 
-- **Java 21**  
+As aplicações são **containerizadas** com **Docker**, o que garante ambientes isolados e consistentes, facilitando a implantação e escalabilidade dos microserviços. Para monitoramento em tempo real, utilizamos uma combinação poderosa de ferramentas:
 
-- **Micronaut**  
+- **Micrometer** para coleta de métricas diretamente integradas no Micronaut.
+- **Prometheus** para armazenar e consultar essas métricas.
+- **Grafana** para visualização de dados em **dashboards interativos** e acompanhamento de desempenho do sistema.
 
-- **Docker**
+## 🛠️ Tecnologias Utilizadas
 
-- **Apache Kafka**
+- **Java 21**: Nova versão do Java, trazendo melhorias de performance e novos recursos.
+- **Micronaut**: Framework rápido e leve, ideal para microserviços escaláveis.
+- **Docker**: Containerização que facilita a escalabilidade e consistência dos ambientes.
+- **Apache Kafka**: Sistema de mensageria para comunicação assíncrona entre os serviços.
+- **Prometheus**: Plataforma de monitoramento de métricas em tempo real.
+- **Grafana**: Ferramenta de dashboards para análise de dados e visualização de métricas.
 
-- **Prometheus**
+## 📊 Diagrama de Arquitetura
 
-- **Grafana**  
+A seguir está o diagrama que ilustra como os serviços interagem entre si no sistema de pedidos e pagamentos:
 
-## Diagrama UML
+![Diagrama de Arquitetura](./image/service-um.png)
 
-<img src="./image/service-um.png" alt="Descrição da Imagem" width="720"/>
+## 🚀 Como Criar um Microserviço com Micronaut
 
-# COMO CRIAR UM MICRO SERVIÇO EM MICRONAUT:
+### Pré-requisitos
 
-Este tutorial é para programadores já familiarizados com desenvolvimento de backend java.
+Este guia assume que você já possui experiência com **Spring Boot** e desenvolvimento back-end.
 
-Entre nesse link: https://micronaut.io/launch
+### Passo a Passo
 
-Adicione a versão mais recente do framework micronaut, escolha a linguagem Java, 
-escolha a versão mais recente do java se preferir, escolha um nome para o projeto, 
-escolha um nome para o pacote, escolha uma ferramenta de construção pode ser Gradle ou Maven o que preferir, 
-escolha a estrutura de teste JUnit, clique em Features/Dependências, adicione as dependências que preferir, 
-depois é só clicar em Generate Project/Gerar Projeto. Com isso, vai baixar um arquivo em zip, é só extrair.
+1. Acesse o site oficial do **[Micronaut Launch](https://micronaut.io/launch)**.
+2. No formulário, configure as opções:
+    - Linguagem: **Java**
+    - Versão: Selecione a mais recente
+    - Nome do Projeto: Defina o nome para seu projeto
+    - Nome do Pacote: Defina o nome do pacote base
+    - Ferramenta de build: Escolha entre **Gradle** ou **Maven**
+    - Estrutura de teste: **JUnit**
+3. Adicione as **features** desejadas (dependências como Kafka, JPA, etc.).
+4. Clique em **Generate Project** para baixar o projeto em formato **.zip**.
+5. Extraia o arquivo baixado:
+    - **Atenção**: Cuidado para não arrastar pastas duplicadas (`service-um > service-um`).
+6. Abra o projeto em sua IDE preferida.
+7. Carregue as dependências do projeto (ao abrir na IDE, clique em "Load" se solicitado).
 
-Crie uma pasta para ser a pasta principal para adicionar o módulos dos projetos, 
-abre a pasta que você criou, mas CUIDADO: Quando a pasta é extraída ela cria uma pasta duplicada: 
-Exemplo: service-um > service-um…, a pasta que deve ser arrastada é a segunda pasta. 
-Com isso, já podemos abrir a IDE, vai aparecer uma notificação do maven, 
-é só clicar em Load para carregar as dependências do projeto.
+Agora, você está pronto para começar a desenvolver o seu microserviço com **Micronaut**!
+
+---
+
+## 📚 Referências
+
+- [Documentação Oficial do Micronaut](https://docs.micronaut.io/latest/guide/index.html)
