@@ -33,15 +33,15 @@ Caso esteja usando o banco de dados **MongoDB** usa-se apenas o **@Serdeable** e
     </dependency>
 
 Com isso, vamos criar dois atributos privados:
-````
+```java
 private Long id;
-private List<Product> products;
-````
+private List<Product> products
+```
 
 E principalmente crie os **Getters** e **Setters**, não use as anotações do **lombok** para criar os gets e sets automaticamente, o lombok pode causar alguns erros futuramente. para evitar erros.
 
 Para o banco de dados **MongoDB** usa-se **String** com chave primária:
-````
+```java
 private String id;
 ````
 
@@ -68,7 +68,7 @@ E para persistir com o banco de dados **MongoDB** vamos utilizar as anotações 
 * **@GeneratedValue**
 
 Em **Product** usaremos as mesmas anotações que foram usadas em **Order**: Com isso, vamos criar três atributos privados:
-````
+```java
 private Long id; // Tipo String para banco MongoDB
 private String name;
 private double price;
@@ -199,18 +199,19 @@ Agora vamos criar a camada de serviço, que vai ser responsável por toda regra 
 * E depois anote ela com **@Inject** ````Vai fazer com que o atributo seja injetado e criado o construtor````
 
 Com isso, vamos criar dois métodos: o **findAll e addOrder** , findAll vai servir para mostrar todos os dados que foram adicionados dentro do banco e o addOrder vai adicionar dados dentro do banco. Então:
+```java
+  public List<Order> findAll (){
+      return orderRepository.findAll();
+  } // esse método findAll() já vem no JpaRepository ou no CrudRepository.
 
-    public List<Order> findAll (){
-        return orderRepository.findAll();
-    } // esse método findAll() já vem no JpaRepository ou no CrudRepository.
 
-
-    public Order addOrder (Order order){
-        return orderRepository.save(order);
-    } // esse método save() já vem no JpaRepository ou no CrudRepository.
+  public Order addOrder (Order order){
+      return orderRepository.save(order);
+  } // esse método save() já vem no JpaRepository ou no CrudRepository.
+  ```
 
 Da mesma forma vamos fazer com ProductService:
-
+```java
     public List<Product> findAll (){
         return productRepository.findAll();
     }
@@ -218,6 +219,7 @@ Da mesma forma vamos fazer com ProductService:
     public Order addProduct (Product product){
         return productRepository.save(product);
     }
+```
 
 Veja como ficou a implementação dos serviços no [repositório](https://github.com/RavikFerreira/ProjectTCC/tree/feature/service-um) do nosso exemplo.
 Agora por fim a camada de controle,que vai ser responsável por todo controle dos caminhos das requisições, então, no pacote controller, crie uma classe usando aquela mesma estrutura, o **nome da entidade + controller em CamelCase Ex: EntidadeController.**
@@ -228,7 +230,7 @@ Agora por fim a camada de controle,que vai ser responsável por todo controle do
   * E depois anote ela com **@Inject** que vai fazer com que o atributo seja injetado e criado o construtor.
 
 Com isso, vamos criar dois métodos: o **findAll e addOrder**, findAll vai servir para trazer toda a regra de negócio que foi feita no findAll do  serviço e o addOrder a mesma coisa. Então:
-
+```java
     @Get()
     public List<Order> findAll (){
         return orderService.findAll();
@@ -238,6 +240,7 @@ Com isso, vamos criar dois métodos: o **findAll e addOrder**, findAll vai servi
     public Order addOrder (@Body Order order){
         return orderService.addOrder(order);
     }
+```
 
 E em cima do método deve passar o tipo de método HTTP que vai receber um objeto e ao mesmo tempo salvar ele no banco, o **@Body** que serve para que o Micronaut entenda que o método está recebendo um objeto como parâmetro.
 
