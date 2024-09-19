@@ -238,7 +238,34 @@ orchestrator-service:
   ports:
     - “4000:4000”
 ````
-Por fim é só empacotar os microsserviços e rodar os containers.
+PROMETHEUS E GRAFANA RODANDO EM CONTAINER DOCKER:
+
+Assim já podemos iniciar ele no docker usando as configurações anteriores:
+````yaml
+prometheus:
+  image: prom/prometheus:latest
+  container_name: prometheus
+  volumes:
+    - ./config/prometheus.yml:/etc/prometheus/prometheus.yml //primeiro é apontado o pacote das configurações do prometheus e depois as configurações dele no docker mas não se preocupe, isso é uma configuração padrão.
+
+  networks:
+    - orchestrator-service
+  ports:
+    - "9090:9090"
+````
+> .`/config/prometheus.yml:/etc/prometheus/prometheus.yml` O primeiro é apontado o pacote das configurações do prometheus e depois as configurações dele no docker mas não se preocupe, isso é uma configuração padrão.
+
+Depois que os containers estiver em pé é só pesquisar por localhost:9090, ou a porta que foi definida, ir em status e verificar se o state estar “UP”
+
+Assim ele já está pronto e agora podemos conectar o Prometheus ao Grafana que é um serviço Web que oferece vários tipos de dashboards para analisar da melhor forma os gráficos com os dados coletados pelo Prometheus, então no docker-compose:
+````yaml
+grafana:
+  image: grafana/grafana:latest
+  ports:
+    - "3000:3000"
+  networks:
+    - orchestrator-service
+````
 
 
 COMO INICIAR OS TODOS CONTAINERS:
