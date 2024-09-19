@@ -74,6 +74,8 @@ ipconfig
 ````
 Com isso, é necessario rodar essas aplicações em containers, então é importante seguir o **"TUTORIAL BÁSICO DOCKER E DOCKERFILE:"**
 
+Caso ja esteja rodando em um container, basta substituir o ipconfig pelo o nome do container, no caso o meu está service-um.
+
 Feito isso é so seguir esse passo a passo:
 
 Deve verificar se o Prometheus está com o state **UP**:
