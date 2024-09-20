@@ -98,8 +98,6 @@ jpa.default.entity-scan.packages = com.nome-do-pacote.models
 ````
 > Essas configurações vai servir para escanear todas as classes do pacote que foi passado no caminho da configuração.
 
-Veja [aqui](https://github.com/RavikFerreira/ProjectTCC/tree/feature/service-um) no projeto as classes no pacote models e das demais configurações mencionadas até aqui.
-
 O próximo a ser criado é o repositório, que é uma classe responsável por "conversar" com a base de dados. No pacote **repository**, deve ser criado uma interface, a estrutura mais usada para isso é o **nome-da-entidade + repository** em **CamelCase Ex: EntidadeRepository.**
 
 Depois disso, deve ser feito a conexão com o banco de dados, e para isso existem algumas configurações que devem ser inseridas, mas antes disso temos que adicionar a dependência do banco de dados **PostgreSQL**:
@@ -194,8 +192,6 @@ E também deve ser adicionado esse <plugin>:
     <version>3.3.1</version>
 </plugin>
 ````
-Veja no [repositório](https://github.com/RavikFerreira/ProjectTCC/tree/feature/service-um) exemplo como ficaram estas interfaces e também os arquivos de configuração mencionados acima.
-
 Agora vamos criar a camada de serviço, que vai ser responsável por toda regra de negócio da aplicação, então, no pacote service, crie uma classe usando aquela mesma estrutura, o **nome da entidade + service em CamelCase Ex: EntidadeService.**
 * Anote a classe com **@Singleton** ````Serve para que o Micronaut entenda que essa classe é uma classe de serviço.````
 * Faça a injeção de dependência da interface do repository:
@@ -225,8 +221,6 @@ Da mesma forma vamos fazer com ProductService:
         return productRepository.save(product);
     }
 ```
-
-Veja como ficou a implementação dos serviços no [repositório](https://github.com/RavikFerreira/ProjectTCC/tree/feature/service-um) do nosso exemplo.
 
 Agora por fim a camada de controle,que vai ser responsável por todo controle dos caminhos das requisições, então, no pacote controller, crie uma classe usando aquela mesma estrutura, o **nome da entidade + controller em CamelCase Ex: EntidadeController.**
 * Anote a classe com **@Controller(“orders”)** ````Serve para que o Micronaut entenda que essa classe é uma classe de controle.````
