@@ -39,7 +39,7 @@ private List<Product> products
 ```
 
 E principalmente crie os **Getters** e **Setters** 
-> Não use as anotações do **lombok** para criar os gets e sets automaticamente, o lombok pode causar alguns erros futuramente. para evitar erros.
+> Não use as anotações do **lombok** para criar os gets e sets automaticamente, o lombok pode causar alguns erros futuramente.
 
 Para o banco de dados **MongoDB** usa-se **String** com chave primária:
 ```java
