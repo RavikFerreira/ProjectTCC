@@ -38,7 +38,8 @@ private Long id;
 private List<Product> products
 ```
 
-E principalmente crie os **Getters** e **Setters**, não use as anotações do **lombok** para criar os gets e sets automaticamente, o lombok pode causar alguns erros futuramente. para evitar erros.
+E principalmente crie os **Getters** e **Setters** 
+> Não use as anotações do **lombok** para criar os gets e sets automaticamente, o lombok pode causar alguns erros futuramente. para evitar erros.
 
 Para o banco de dados **MongoDB** usa-se **String** com chave primária:
 ```java
