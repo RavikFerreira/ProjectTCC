@@ -1,4 +1,4 @@
-# INTEGRANDO MICROUNAUT + MICROMETER PARA MOSTRAR MÉTRICAS DE DESEMPENHO COM PROMETHEUS E GRAFANA
+# INTEGRANDO MICRONAUT + MICROMETER PARA MOSTRAR MÉTRICAS DE DESEMPENHO COM PROMETHEUS E GRAFANA
 
 O micrometer é uma biblioteca do java que permite coletar métricas de desempenho para monitorar as aplicações, seja ela capacidade de memória, threads, CPU, etc.
 
