@@ -1,4 +1,28 @@
 ## COMO IMPLEMENTAR UM SISTEMA DE MICRO SERVIÇO:
+## 🚀 Como Criar um Microserviço com Micronaut
+
+### Pré-requisitos
+
+Este guia assume que você já possui experiência com **Spring Boot** e desenvolvimento back-end.
+
+### Passo a Passo
+
+1. Acesse o site oficial do **[Micronaut Launch](https://micronaut.io/launch)**.
+2. No formulário, configure as opções:
+    - Linguagem: **Java**
+    - Versão: Selecione a mais recente
+    - Nome do Projeto: Defina o nome para seu projeto
+    - Nome do Pacote: Defina o nome do pacote base
+    - Ferramenta de build: Escolha entre **Gradle** ou **Maven** (**Maven** como preferencial)
+    - Estrutura de teste: **JUnit**
+3. Adicione as **features** desejadas (dependências como Kafka, JPA, etc.).
+4. Clique em **Generate Project** para baixar o projeto em formato **.zip**.
+5. Extraia o arquivo baixado.
+    > **Atenção**: Cuidado para não arrastar pastas duplicadas (`service-um > service-um`).
+6. Abra o projeto em sua IDE preferida.
+7. Carregue as dependências do projeto (ao abrir na IDE, clique em "Load" se solicitado).
+
+Agora, você está pronto para começar a desenvolver o seu microserviço com **Micronaut**!
 
 ## ESTRUTURA DO PROJETO E CRIAÇÃO DAS ENTIDADES
 Primeiramente é importante definir a estrutura do projeto, criando os pacotes para dividir as responsabilidades, então no **nome-do-micro-serviço > src > main > java > com.nome-do-diretório:** clique com botão direito, **New > Package > digita o nome-do-pacote:** faça isso para criar os seguintes pacotes:
