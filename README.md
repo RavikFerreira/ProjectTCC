@@ -1,6 +1,6 @@
 ## COMO IMPLEMENTAR UM SISTEMA DE MICRO SERVIÇO:
 
-
+## ESTRUTURA DO PROJETO E CRIAÇÃO DAS ENTIDADES
 Primeiramente é importante definir a estrutura do projeto, criando os pacotes para dividir as responsabilidades, então no **nome-do-micro-serviço > src > main > java > com.nome-do-diretório:** clique com botão direito, **New > Package > digita o nome-do-pacote:** faça isso para criar os seguintes pacotes:
 
 
@@ -98,6 +98,8 @@ jpa.default.entity-scan.packages = com.nome-do-pacote.models
 ````
 > Essas configurações vai servir para escanear todas as classes do pacote que foi passado no caminho da configuração.
 
+## CRIANDO REPOSITÓRIOS E CONECTANDO AO BANCO DE DADOS
+
 O próximo a ser criado é o repositório, que é uma classe responsável por "conversar" com a base de dados. No pacote **repository**, deve ser criado uma interface, a estrutura mais usada para isso é o **nome-da-entidade + repository** em **CamelCase Ex: EntidadeRepository.**
 
 Depois disso, deve ser feito a conexão com o banco de dados, e para isso existem algumas configurações que devem ser inseridas, mas antes disso temos que adicionar a dependência do banco de dados **PostgreSQL**:
@@ -192,6 +194,8 @@ E também deve ser adicionado esse <plugin>:
     <version>3.3.1</version>
 </plugin>
 ````
+## CRIANDO A CLASSE DE SERVIÇO
+
 Agora vamos criar a camada de serviço, que vai ser responsável por toda regra de negócio da aplicação, então, no pacote service, crie uma classe usando aquela mesma estrutura, o **nome da entidade + service em CamelCase Ex: EntidadeService.**
 * Anote a classe com **@Singleton** ````Serve para que o Micronaut entenda que essa classe é uma classe de serviço.````
 * Faça a injeção de dependência da interface do repository:
@@ -221,6 +225,7 @@ Da mesma forma vamos fazer com ProductService:
         return productRepository.save(product);
     }
 ```
+## CRIANDO A CLASSE CONTROLLER
 
 Agora por fim a camada de controle,que vai ser responsável por todo controle dos caminhos das requisições, então, no pacote controller, crie uma classe usando aquela mesma estrutura, o **nome da entidade + controller em CamelCase Ex: EntidadeController.**
 * Anote a classe com **@Controller(“orders”)** ````Serve para que o Micronaut entenda que essa classe é uma classe de controle.````
