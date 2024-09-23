@@ -4,7 +4,7 @@
 
 Este guia assume que você já possui experiência com **Spring Boot** e desenvolvimento back-end.
 
-### Passo a Passo
+## CRIAÇÃO DO PROJETO NO MICRONAUT LAUNCH
 
 1. Acesse o site oficial do **[Micronaut Launch](https://micronaut.io/launch)**.
 2. No formulário, configure as opções:
