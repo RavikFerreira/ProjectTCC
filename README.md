@@ -29,31 +29,6 @@ A seguir está o diagrama que ilustra como os serviços interagem entre si no si
 
 ![Diagrama de Arquitetura](./image/service-um.png)
 
-## 🚀 Como Criar um Microserviço com Micronaut
-
-### Pré-requisitos
-
-Este guia assume que você já possui experiência com **Spring Boot** e desenvolvimento back-end.
-
-### Passo a Passo
-
-1. Acesse o site oficial do **[Micronaut Launch](https://micronaut.io/launch)**.
-2. No formulário, configure as opções:
-    - Linguagem: **Java**
-    - Versão: Selecione a mais recente
-    - Nome do Projeto: Defina o nome para seu projeto
-    - Nome do Pacote: Defina o nome do pacote base
-    - Ferramenta de build: Escolha entre **Gradle** ou **Maven**
-    - Estrutura de teste: **JUnit**
-3. Adicione as **features** desejadas (dependências como Kafka, JPA, etc.).
-4. Clique em **Generate Project** para baixar o projeto em formato **.zip**.
-5. Extraia o arquivo baixado:
-    - **Atenção**: Cuidado para não arrastar pastas duplicadas (`service-um > service-um`).
-6. Abra o projeto em sua IDE preferida.
-7. Carregue as dependências do projeto (ao abrir na IDE, clique em "Load" se solicitado).
-
-Agora, você está pronto para começar a desenvolver o seu microserviço com **Micronaut**!
-
 ---
 
 ## 📚 Referências
