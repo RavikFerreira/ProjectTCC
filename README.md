@@ -1,5 +1,4 @@
-## COMO CRIAR E IMPLEMENTAR UM MICRO SERVIÇO:
-## 🚀 Como Criar um Microserviço com Micronaut
+## COMO CRIAR E IMPLEMENTAR UM MICRO SERVIÇO COM JAVA E MICRONAUT:
 
 ### Pré-requisitos
 
