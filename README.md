@@ -1,9 +1,8 @@
-# TUTORIAL BÁSICO DOCKER E DOCKERFILE: 	
+# TUTORIAL BÁSICO DOCKER E DOCKERFILE: CRIANDO E EXECUTANDO IMAGEM DOCKER DE TODOS OS SERVIÇOS
+## INTRODUÇÃO
 O docker compose é uma ferramenta que é usada para definir e rodar aplicações que rodam em múltiplos container, como é o caso de aplicações de microsserviços. Neste tutorial apresentamos a configuração do docker-compose para definir e rodar os microsserviços usados como nosso exemplo de pedidos e pagamentos.
 
 ## COMO CRIAR CONTAINERS COM DOCKER-COMPOSE E BAIXAR AS IMAGES:
-
-
 Crie um arquivo **docker-compose.yaml** na pasta raiz do projeto.
 
     Project/
@@ -87,7 +86,7 @@ nome-do-container:
   ports:
     - "8080:8080" 
 ````
-  COMO CRIAR ARQUIVO DOCKERFILE:
+## COMO CRIAR ARQUIVO DOCKERFILE:
 
 O arquivo dockerfile é um script que serve para criar a imagem docker. Ele deve ser criado na raiz de cada um dos micro serviços.
 Exemplo: nome-do-micro-serviço: clica com botão direito, New > File > digita Dockerfile
@@ -105,7 +104,7 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 
 > ``EXPOSE 8080 `` porta que vai ser exposta, deve ser a mesma definida no resources/application.properties/yaml.
 
-COMO CRIAR CONTAINERS DO KAFKA E REDPANDA NO DOCKER:
+## COMO CRIAR CONTAINERS DO KAFKA E REDPANDA NO DOCKER:
 
 Vai na raiz do projeto e procure por docker-compose.yaml
 
@@ -238,7 +237,7 @@ orchestrator-service:
   ports:
     - “4000:4000”
 ````
-PROMETHEUS E GRAFANA RODANDO EM CONTAINER DOCKER:
+## CRIAÇÃO DO CONTAINER DO PROMETHEUS E GRAFANA:
 
 Assim já podemos iniciar ele no docker usando as configurações anteriores:
 ````yaml
@@ -268,7 +267,7 @@ grafana:
 ````
 
 
-COMO INICIAR OS TODOS CONTAINERS:
+## COMO INICIAR OS TODOS CONTAINERS:
 
 Abra o docker desktop, caso não tenha, **[link para download](https://www.docker.com/products/docker-desktop)**. 
 
