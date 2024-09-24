@@ -77,7 +77,7 @@ Com isso, é necessario rodar essas aplicações em containers, então é import
 
 Caso ja esteja rodando em um container, basta substituir o ipconfig pelo o nome do container, no caso o meu está service-um.
 
-## ENTENDENDO INTERFACE GRÁFICA PROMETHEUS E GRAFANA
+## ENTENDENDO INTERFACE GRÁFICA DO PROMETHEUS E GRAFANA
 
 Feito isso é so seguir esse passo a passo:
 
