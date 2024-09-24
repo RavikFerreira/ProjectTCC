@@ -1,7 +1,8 @@
-# INTEGRANDO MICRONAUT + MICROMETER PARA MOSTRAR MÉTRICAS DE DESEMPENHO COM PROMETHEUS E GRAFANA
-
+# INTEGRANDO MICROMETER AO MICRONAUT PARA APRESENTAR MÉTRICAS DE DESEMPENHO COM PROMETHEUS E GRAFANA
+## INTRODUÇÃO
 O micrometer é uma biblioteca do java que permite coletar métricas de desempenho para monitorar as aplicações, seja ela capacidade de memória, threads, CPU, etc.
 
+## ADICIONANDO AS DEPENDÊNCIAS NECESSÁRIAS
 Para começar, vamos precisar configurar dependências do micrometer que vão permitir que as coletas de dados sejam feitas. 
 
 Então no pom.xml da aplicação acrescentamos na seção de dependências:
@@ -28,7 +29,7 @@ Ainda no pom.xml podemos adicionar a dependência do Prometheus:
     <artifactId>micronaut-micrometer-registry-prometheus</artifactId>
 </dependency>
 ````
-
+## CONFIGURAÇÃO DO PROMETHEUS
 Feito isso, devemos configurar o resources/application.properties/yaml:
 
 PARA **PROPERTIES**:
@@ -75,6 +76,8 @@ ipconfig
 Com isso, é necessario rodar essas aplicações em containers, então é importante seguir o **"TUTORIAL BÁSICO DOCKER E DOCKERFILE:"**
 
 Caso ja esteja rodando em um container, basta substituir o ipconfig pelo o nome do container, no caso o meu está service-um.
+
+## ENTENDENDO INTERFACE GRÁFICA PROMETHEUS E GRAFANA
 
 Feito isso é so seguir esse passo a passo:
 
