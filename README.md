@@ -1,8 +1,10 @@
 # INTEGRANDO MICROMETER AO MICRONAUT PARA APRESENTAR MÉTRICAS DE DESEMPENHO COM PROMETHEUS E GRAFANA
 ## INTRODUÇÃO
-O micrometer é uma biblioteca do java que permite coletar métricas de desempenho para monitorar as aplicações, seja ela capacidade de memória, threads, CPU, etc.
+Este tutorial tem como objetivo ensinar como integrar o Micrometer ao Micronaut, mostrando todas as configurações e dependências necessárias para que a aplicação funcione corretamente, tanto localmente quanto em containers. Além disso, ele explora como monitorar as métricas de desempenho usando dashboards gráficos. O tutorial aborda a adição das dependências essenciais para o Micrometer e Prometheus, a configuração do Prometheus para coletar e exibir métricas, e um passo a passo para visualizar esses dados no Prometheus e Grafana, facilitando o acompanhamento do estado da aplicação.
 
 ## ADICIONANDO AS DEPENDÊNCIAS NECESSÁRIAS
+O micrometer é uma biblioteca do java que permite coletar métricas de desempenho para monitorar as aplicações, seja ela capacidade de memória, threads, CPU, etc.
+
 Para começar, vamos precisar configurar dependências do micrometer que vão permitir que as coletas de dados sejam feitas. 
 
 Então no pom.xml da aplicação acrescentamos na seção de dependências:
