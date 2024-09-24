@@ -3,6 +3,10 @@
 ### Pré-requisitos
 
 Este guia assume que você já possui experiência com **Spring Boot** e desenvolvimento back-end.
+## INTRODUÇÃO
+Este tutorial é voltado para iniciantes em Java e Micronaut, apresentando uma introdução à estrutura em camadas do Micronaut para organizar o código. Ele ensina como criar um projeto usando o Micronaut Launch, facilitando a configuração inicial. O tutorial também explica a estrutura do projeto, a criação de entidades com JPA e Hibernate, além do uso do Lombok para simplificar getters e setters.
+
+Em seguida, aborda a criação de repositórios, mostrando como conectar bancos de dados relacionais e não relacionais. A camada de serviço é apresentada com um exemplo prático de operações CRUD, utilizando a anotação @Inject. Por fim, o tutorial ensina a criar controladores REST para expor a API e mapear endpoints de forma eficiente.
 
 ## CRIAÇÃO DO PROJETO NO MICRONAUT LAUNCH
 
