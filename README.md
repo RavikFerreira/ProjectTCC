@@ -245,7 +245,7 @@ prometheus:
   image: prom/prometheus:latest
   container_name: prometheus
   volumes:
-    - ./config/prometheus.yml:/etc/prometheus/prometheus.yml //primeiro é apontado o pacote das configurações do prometheus e depois as configurações dele no docker mas não se preocupe, isso é uma configuração padrão.
+    - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
 
   networks:
     - orchestrator-service
@@ -267,7 +267,7 @@ grafana:
 ````
 
 
-## COMO INICIAR OS TODOS CONTAINERS:
+## COMO INICIAR TODOS OS CONTAINERS:
 
 Abra o docker desktop, caso não tenha, **[link para download](https://www.docker.com/products/docker-desktop)**. 
 
