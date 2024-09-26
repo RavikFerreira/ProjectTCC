@@ -450,7 +450,7 @@ public Event toEvent(String json){
 }
 ````
 
-## CRIAÇÃO DA CLASSE PRODUCER NO OSCHESTRATOR-SERVICE
+## CRIAÇÃO DA CLASSE PRODUCER NO ORCHESTRATOR-SERVICE
 
 Contudo, dentro do diretório kafka no **orchestrator-service**, já podemos criar a classe de Producer:
 
@@ -624,7 +624,7 @@ public void continueSaga(Event event) {
     sendToProducerWithTopic(event,topic);
 }
 ````
-## CRIANDO CLASSE CONSUMER
+## CRIANDO CLASSE CONSUMER ORCHESTRATOR-SERVICE
 Ainda em orchestrator-service, já podemos criar a classe **Consumer** que vai consumir todas as mensagens que a classe anterior produziu:
 
 1. Anota a classe com **@KafkaListener(groupId = “${kafka.consumer.group-id}”)** , essa anotação vai apontar diretamente para o micro serviço que vai ser consumido.
