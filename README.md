@@ -276,7 +276,7 @@ public NewTopic paymentFailTopic(){
 
 Finalizando essa configuração, precisaremos voltar ao micro serviço principal (service-um) para adicionar algumas entidades que o kafka vai utilizar para enviar as mensagens, nesse exemplo vamos usar o **MongoDB** como banco de dados.
 
-## CRIAÇÃO DOS MODELS E REPOSITORY QUE VAI SALVAR OS EVENTS NO SERVICE-UM
+## CRIAÇÃO DOS MODELS E REPOSITORY DOS EVENTS NO SERVICE-UM
 
 1. Em **models** adicione mais duas entidades **Event e History**:
 
