@@ -312,7 +312,7 @@ private LocalDateTime createdAt;
 
 4. Anote ela com **@MongoRepository(databaseName= “orders-db”)** e estende a classe ao **CrudRepository<Event, String>**
 
-## CRIAÇÃO DA CLASSE DE SERVIÇO QUE SALVA OS EVENTS
+## CRIAÇÃO DA CLASSE DE SERVIÇO DOS EVENTS
 
 Já podemos criar a regra de negócio que vai salvar os dados no banco, então em service crie uma classe chamada **EventService:**
 
