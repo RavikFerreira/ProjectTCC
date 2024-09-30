@@ -94,13 +94,13 @@ Exemplo: nome-do-micro-serviço: clica com botão direito, New > File > digita D
 Dentro do Dockerfile, vai adicionar alguns scripts:
 ````dockerfile
 FROM openjdk:21 
-COPY target/*.jar app.jar 
+COPY target/nome-do-jar.jar app.jar 
 EXPOSE 8080 
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ````
 >  ``FROM openjdk:21 `` define qual image do jdk que vai usar, importante usar a mesma versão do java do projeto.
 
-> ``COPY target/*.jar app.jar `` é aqui onde vai ser adicionado o .jar do projeto.
+> ``COPY target/nome-do-jar.jar app.jar `` é aqui onde vai ser adicionado o nome do .jar do projeto que está nos arquivos temporarios **target/nome-do-jar-0.1.jar**.
 
 > ``EXPOSE 8080 `` porta que vai ser exposta, deve ser a mesma definida no resources/application.properties/yaml.
 
