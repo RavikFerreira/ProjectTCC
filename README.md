@@ -27,7 +27,7 @@ Segue a sequência dos passos que devem ser seguidos nas branchers:
 
 A seguir está o diagrama que ilustra como os serviços interagem entre si no sistema de pedidos e pagamentos:
 
-![Diagrama de Arquitetura](./image/service-um.png)
+![Diagrama de Arquitetura](./image/service-um.jpg)
 
 ---
 
