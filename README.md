@@ -174,7 +174,8 @@ private Map<String, Object> producerProps() {
 
 Vamos precisar também de alguns métodos de criação de beans, **kafkaConsumer e o kafkaProducer**:
 
-De início, ele vai ser anotado com **@Singleton** para garantir que apenas uma instância seja criada para esse serviço e **@Bean** que é para a classe conseguir identificar que ele é um bean.
+De início, ele vai ser anotado com **@Singleton** para garantir que apenas uma instância seja criada para esse serviço e **@Bean** que é para dizer ao sistema que um determinado método deve criar e fornecer um objeto que será utilizado em outros lugares da aplicação. 
+
 ````java
 @Singleton
 @Bean
