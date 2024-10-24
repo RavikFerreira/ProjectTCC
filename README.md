@@ -28,8 +28,7 @@ Em seguida, aborda a criação de repositórios, mostrando como conectar bancos 
 Agora, você está pronto para começar a desenvolver o seu microserviço com **Micronaut**!
 
 ## ESTRUTURA DO PROJETO E CRIAÇÃO DAS ENTIDADES
-Primeiramente é importante definir a estrutura do projeto, criando os pacotes para dividir as responsabilidades, então no **nome-do-micro-serviço > src > main > java > com.nome-do-diretório:** clique com botão direito, **New > Package > digita o nome-do-pacote:** faça isso para criar os seguintes pacotes:
-
+Primeiramente é importante definir a estrutura do projeto, criando os pacotes para dividir as responsabilidades, então no **service-um > src > main > java > com.serviceum:** clique com botão direito, **New > Package > digita o nome do pacote:** faça isso para criar os seguintes pacotes:
 
 ````
 service-um/
@@ -44,7 +43,7 @@ service-um/
 ````
 
 Crie os pacotes garantindo que a classe com o método main estará na raiz dessa
-hierarquia de pacotes. O primeiro que deve ser criado é o **models** que são as entidades que vão se conectar ao **repository**. A partir dos modelos destas classes que são entidades as tabelas do banco de dados serão criadas automaticamente. Clique com o botão direito no diretório **models: New > Java Class >** digite o **nome-da-classe-de-entidade**. Aqui vamos usar duas entidades: **Order** e **Product**.
+hierarquia de pacotes. O primeiro que deve ser criado é o **models** que são as entidades que vão se conectar ao **repository**. A partir dos modelos destas classes que são entidades as tabelas do banco de dados serão criadas automaticamente. Clique com o botão direito no diretório **models: New > Java Class >** digite o **nome da classe**. Aqui vamos usar duas entidades: **Order** e **Product**.
 
 Dentro de **Order**, deve colocar três anotações em cima da classe:
 * **@Entity** ``Que serve para definir que a classe é uma entidade``
@@ -52,12 +51,13 @@ Dentro de **Order**, deve colocar três anotações em cima da classe:
 * **@Serdeable** ``Que serve para permitir que a classe possa ser serializada e deserilizada``
 
 Caso esteja usando o banco de dados **MongoDB** usa-se apenas o **@Serdeable** e o outra anotação de mapeamento *@MappedEntity*. Mas para isso, deve ser adicionado a dependência do micronaut-data-model: clique em **pom.xml** e procure pela tag **<dependencies>** e adicione essa dependência dentro dessa tag:
-
+````xml
     <dependency>
         <groupId>io.micronaut.data</groupId>
         <artifactId>micronaut-data-model</artifactId>
         <version>4.8.1</version>
     </dependency>
+````
 
 Com isso, vamos criar dois atributos privados:
 ```java
@@ -107,7 +107,7 @@ E principalmente crie os **Getters e Setters**, não use as anotações do **lom
 
 E para finalizar a parte dos **models** deve se fazer a **introspecção** das entidades para gerar metadados e melhorar o desempenho do sistema. Com isso vamos usar a anotação de introspecção: **(OBS: Para MongoDB essa configuração não é necessária).**
 
-* **@Introspected(package = “com.caminho-do-pacote-das-entidades” , includedAnnotations = Entity.class)** ````Isso vai introspectar todas as classes anotadas com @Entity no caminho que foi passado.````
+* **@Introspected(package = “com.serviceum.models” , includedAnnotations = Entity.class)** ````Isso vai introspectar todas as classes anotadas com @Entity no caminho que foi passado.````
 
 Também é importante adicionar as configurações de escaneamento de entidades do **JPA** no **resources/application.properties/yaml**:
 
@@ -117,17 +117,17 @@ jpa:
     default:
         entity-scan:
             packages:
-                com.nome-do-pacote.models
+                com.serviceum.models
 ````
 **Para PROPERTIES:**
 ````properties
-jpa.default.entity-scan.packages = com.nome-do-pacote.models
+jpa.default.entity-scan.packages = com.serviceum.models
 ````
 > Essas configurações vai servir para escanear todas as classes do pacote que foi passado no caminho da configuração.
 
 ## CRIANDO REPOSITÓRIOS E CONECTANDO AO BANCO DE DADOS
 
-O próximo a ser criado é o repositório, que é uma classe responsável por "conversar" com a base de dados. No pacote **repository**, deve ser criado uma interface, a estrutura mais usada para isso é o **nome-da-entidade + repository** em **CamelCase Ex: EntidadeRepository.**
+O próximo a ser criado é o repositório, que é uma classe responsável por "conversar" com a base de dados. No pacote **repository**, deve ser criado uma interface chamada **OrderRepository** e **ProductRepository**
 
 Depois disso, deve ser feito a conexão com o banco de dados, e para isso existem algumas configurações que devem ser inseridas, mas antes disso temos que adicionar a dependência do banco de dados **PostgreSQL**:
 ````xml
@@ -138,9 +138,9 @@ Depois disso, deve ser feito a conexão com o banco de dados, e para isso existe
 </dependency>
 ````
 Com a criação da interface, ela deve ser anotada com:
-* **@Repository** ````Essa anotação serve para que o Micronaut entenda que essa interface é um repository. Essa interface deve estender o JpaRepository indicando a entidade e o tipo da chave que ela contém. Ex: extends JpaRepository<Entidade, Long>, isso vai fazer com que o Jpa mapeie toda a classe criando as tabelas automaticamente.````
+* **@Repository** ````Essa anotação serve para que o Micronaut entenda que essa interface é um repository. Essa interface deve estender o JpaRepository indicando a entidade e o tipo da chave que ela contém. Ex: extends JpaRepository<Order, Long>, isso vai fazer com que o Jpa mapeie toda a classe criando as tabelas automaticamente, fazer da mesma forma com o Product.````
 
-* Da mesma forma para o **MongoDB** porém, a diferença é que ao invés de usar **@Repository** usa se **@MongoRepository(databaseName = “nome-da-collection-do-banco”)**  e também não estende ao **JpaRepository** e sim ao **CrudRepository**.
+* Da mesma forma para o **MongoDB** porém, a diferença é que ao invés de usar **@Repository** usa se **@MongoRepository(databaseName = “orders-db”)**  e também não estende ao **JpaRepository** e sim ao **CrudRepository**.
 Mas antes deve ser adicionado às dependências do **MongoDB**:
 ```xml
 <dependency>
@@ -162,7 +162,7 @@ Com isso, dentro do resources/application.properties/yaml deve adicionar as segu
 ````yaml
 datasources:
     default:
-        url: jdbc:postgresql://localhost:5432/nome-do-banco
+        url: jdbc:postgresql://localhost:5432/orders-db
         username: postgres
         password: postgres
         driver-class-name: org.postgresql.Driver
@@ -170,7 +170,7 @@ datasources:
 ````
 **Para PROPERTIES:**
 ````properties
-datasources.default.url=jdbc:postgresql://localhost:5432/nome-do-banco
+datasources.default.url=jdbc:postgresql://localhost:5432/orders-db
 datasources.default.username= postgres
 datasources.default.password= postgres
 datasources.default.driver-class-name= org.postgresql.Driver
@@ -180,11 +180,11 @@ Para **MongoDB**: dentro do **resources/application.properties/yaml** deve adici
 **Para YAML:**
 ````yaml
 mongodb:
-    uri: mongodb://localhost:27017/nome-do-banco
+    uri: mongodb://localhost:27017/orders-db
 ````
 **Para PROPERTIES:**
 ````properties
-mongodb.uri= mongodb://localhost:27017/nome-do-banco
+mongodb.uri= mongodb://localhost:27017/orders-db
 ````
 E também deve ser adicionado um path de processamento de dados, e mudar a tag de processamento:
 ````xml
@@ -223,7 +223,7 @@ E também deve ser adicionado esse <plugin>:
 ````
 ## CRIANDO A CLASSE DE SERVIÇO
 
-Agora vamos criar a camada de serviço, que vai ser responsável por toda regra de negócio da aplicação, então, no pacote service, crie uma classe usando aquela mesma estrutura, o **nome da entidade + service em CamelCase Ex: EntidadeService.**
+Agora vamos criar a camada de serviço, que vai ser responsável por toda regra de negócio da aplicação, então, no pacote service, crie duas classes **OrderService** e **ProductService** 
 * Anote a classe com **@Singleton** ````Serve para que o Micronaut entenda que essa classe é uma classe de serviço.````
 * Faça a injeção de dependência da interface do repository:
 
@@ -254,7 +254,7 @@ Da mesma forma vamos fazer com ProductService:
 ```
 ## CRIANDO A CLASSE CONTROLLER
 
-Agora por fim a camada de controle,que vai ser responsável por todo controle dos caminhos das requisições, então, no pacote controller, crie uma classe usando aquela mesma estrutura, o **nome da entidade + controller em CamelCase Ex: EntidadeController.**
+Agora por fim a camada de controle,que vai ser responsável por todo controle dos caminhos das requisições, então, no pacote controller, crie duas classes **OrderController** e **ProductController** 
 * Anote a classe com **@Controller(“orders”)** ````Serve para que o Micronaut entenda que essa classe é uma classe de controle.````
 * Faça a injeção de dependência da classe de serviço:
 
@@ -289,4 +289,6 @@ micronaut:
     server:
         port: 8080
 ````
-Com isso, já podemos rodar o projeto, segue [link](https://github.com/RavikFerreira/ProjectTCC/tree/feature/service-um) do repositório pronto e funcionando.
+Com isso, já podemos rodar o projeto, vai na raiz do projeto, entre na classe Application e clique em Executar/Run.
+
+segue [link](https://github.com/RavikFerreira/ProjectTCC/tree/feature/service-um) do repositório pronto e funcionando.
