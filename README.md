@@ -930,6 +930,8 @@ public void consumerPaymentFailEvent(String payload){
     paymentService.realizedRefund(event);
 ````
 
+Para executar o projeto deve executar todos os microsserviços e executar os passos nesse **[link](https://github.com/RavikFerreira/ProjectTCC/blob/feature/docker/README.md)**, realizar os passos no topico **COMO CRIAR CONTAINERS DO KAFKA E REDPANDA NO DOCKER** e **COMO INICIAR TODOS OS CONTAINERS**
+
 
 
 
