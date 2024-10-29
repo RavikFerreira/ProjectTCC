@@ -13,7 +13,7 @@ Em seguida, aborda a criação de repositórios, mostrando como conectar bancos 
 1. Acesse o site oficial do **[Micronaut Launch](https://micronaut.io/launch)**.
 2. No formulário, configure as opções:
     - Linguagem: **Java**
-    - Versão: Selecione a mais recente
+    - Versão: Selecione a versão mais recente
     - Nome do Projeto: Defina o nome para seu projeto
     - Nome do Pacote: Defina o nome do pacote base
     - Ferramenta de build: Escolha entre **Gradle** ou **Maven** (**Maven** como preferencial)
@@ -28,7 +28,7 @@ Em seguida, aborda a criação de repositórios, mostrando como conectar bancos 
 Agora, você está pronto para começar a desenvolver o seu microserviço com **Micronaut**!
 
 ## ESTRUTURA DO PROJETO E CRIAÇÃO DAS ENTIDADES
-Primeiramente é importante definir a estrutura do projeto, criando os pacotes para dividir as responsabilidades, então no **service-um > src > main > java > com.serviceum:** clique com botão direito, **New > Package > digita o nome do pacote:** faça isso para criar os seguintes pacotes:
+Primeiramente é importante definir a estrutura do projeto, criando os pacotes para dividir as responsabilidades, então no **service-um > src > main > java > com.serviceum:** clique com botão direito, **New > Package > digita o nome do pacote:** faça isso para criar os seguintes pacotes como no exemplo a baixo:
 
 ````
 service-um/
@@ -45,12 +45,7 @@ service-um/
 Crie os pacotes garantindo que a classe com o método main estará na raiz dessa
 hierarquia de pacotes. O primeiro que deve ser criado é o **models** que são as entidades que vão se conectar ao **repository**. A partir dos modelos destas classes que são entidades as tabelas do banco de dados serão criadas automaticamente. Clique com o botão direito no diretório **models: New > Java Class >** digite o **nome da classe**. Aqui vamos usar duas entidades: **Order** e **Product**.
 
-Dentro de **Order**, deve colocar três anotações em cima da classe:
-* **@Entity** ``Que serve para definir que a classe é uma entidade``
-* **@Table(“nome-da-tabela”)** ``Que serve para definir o nome da tabela no banco de dados``
-* **@Serdeable** ``Que serve para permitir que a classe possa ser serializada e deserilizada``
-
-Caso esteja usando o banco de dados **MongoDB** usa-se apenas o **@Serdeable** e o outra anotação de mapeamento *@MappedEntity*. Mas para isso, deve ser adicionado a dependência do micronaut-data-model: clique em **pom.xml** e procure pela tag **<dependencies>** e adicione essa dependência dentro dessa tag:
+Nesse exemplo vai ser usado o banco de dados **MongoDB**, que é usado as anatoções **@Serdeable**, ``que vai permitir que a classe seja serializada`` e o outra anotação de mapeamento *@MappedEntity* ``que vai servir para mapear a entidade para que a mesma seja reconhecida no repositorio``. Mas para isso, deve ser adicionado a dependência do micronaut-data-model: clique em **pom.xml** e procure pela tag **<dependencies>** e adicione essa dependência dentro dessa tag:
 ````xml
     <dependency>
         <groupId>io.micronaut.data</groupId>
@@ -58,20 +53,22 @@ Caso esteja usando o banco de dados **MongoDB** usa-se apenas o **@Serdeable** e
         <version>4.8.1</version>
     </dependency>
 ````
+Também pode se usar anotações como:
+
+* **@NoArgsConstructor**  ````Serve para criar um construtor sem argumentos````
+* **@AllArgsConstructor**  ````Serve para criar um construtor com argumentos````
 
 Com isso, vamos criar dois atributos privados:
 ```java
-private Long id;
+private String id;
 private List<Product> products
 ```
+E para permitir que os atributos possam persistir com o banco de dados **MongoDB** vamos utilizar as anotações do **io.micronaut** acima do atributo **id**, a que vamos utilizar são:
+* **@Id**
+* **@GeneratedValue**
 
 E principalmente crie os **Getters** e **Setters** 
 > Não use as anotações do **lombok** para criar os gets e sets automaticamente, o lombok pode causar alguns erros futuramente.
-
-Para o banco de dados **MongoDB** usa-se **String** com chave primária:
-```java
-private String id;
-````
 
 Usando a dependência do lombok: clique em **pom.xml** e procure pela tag **<dependencies>** e adicione essa dependência dentro dessa tag:
 ````xml
@@ -83,22 +80,19 @@ Usando a dependência do lombok: clique em **pom.xml** e procure pela tag **<dep
 </dependency>
 ````
 
-Com isso, a cima da classe, pode se usar anotações para como:
+Caso queira persistir com o banco de dados relacional pode também utilizar as anotações do **jakarta persistence**, a que vamos utilizar são:
 
-* **@NoArgsConstructor**  ````Serve para criar um construtor sem argumentos````
-* **@AllArgsConstructor**  ````Serve para criar um construtor com argumentos````
-
-Para persistir com o banco de dados relacional vamos utilizar as anotações do **jakarta persistence**, a que vamos utilizar são:
+* Dentro de **Order**, deve colocar três anotações em cima da classe:
+* **@Entity** ``Que serve para definir que a classe é uma entidade``
+* **@Table(“nome-da-tabela”)** ``Que serve para definir o nome da tabela no banco de dados``
+* **@Serdeable** ``Que serve para permitir que a classe possa ser serializada e deserilizada``
 * **@Id**  ````Adicionando acima do atributo id, vai servir para definir a esse atributo que ele vai ser uma chave primária para que ele navegue por outras classes.````
 * **@GeneratedValue(strategy = GenerationType.AUTO)**  ````Adicionando acima do atributo id para que o banco de dados defina um id automaticamente a esse atributo.````
 
-E para persistir com o banco de dados **MongoDB** vamos utilizar as anotações do **io.micronaut**, a que vamos utilizar são:
-* **@Id**
-* **@GeneratedValue**
 
 Em **Product** usaremos as mesmas anotações que foram usadas em **Order**: Com isso, vamos criar três atributos privados:
 ```java
-private Long id; // Tipo String para banco MongoDB
+private Long id;
 private String name;
 private double price;
 ````
