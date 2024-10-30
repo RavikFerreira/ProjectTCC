@@ -1,4 +1,4 @@
-# INTEGRANDO MICROMETER AO MICRONAUT PARA APRESENTAR MÉTRICAS DE DESEMPENHO COM PROMETHEUS E GRAFANA
+# APÊNDICE III - TUTORIAL: INTEGRANDO MICROMETER AO MICRONAUT PARA APRESENTAR MÉTRICAS DE DESEMPENHO COM PROMETHEUS E GRAFANA
 ## INTRODUÇÃO
 Este tutorial tem como objetivo ensinar como integrar o Micrometer ao Micronaut, mostrando todas as configurações e dependências necessárias para que a aplicação funcione corretamente, tanto localmente quanto em containers. Além disso, ele explora como monitorar as métricas de desempenho usando dashboards gráficos. O tutorial aborda a adição das dependências essenciais para o Micrometer e Prometheus, a configuração do Prometheus para coletar e exibir métricas, e um passo a passo para visualizar esses dados no Prometheus e Grafana, facilitando o acompanhamento do estado da aplicação.
 
@@ -112,3 +112,5 @@ Agora vamos procurar um dashboard interessante de fácil análise:
 6. Select a Prometheus Data source,  escolha o prometheus e clique em Import.
 
 ![Grafana](./orchestrator-service/image/demo-grafana.png)
+
+Com isso, podemos seguir para o [ultimo passo](https://github.com/RavikFerreira/ProjectTCC/edit/feature/docker/README.md), em que vamos aprender um pouco mais sobre como criar os containers em todos os serviços!
