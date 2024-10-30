@@ -284,7 +284,6 @@ micronaut:
         port: 8080
 ````
 Com isso, já podemos rodar o projeto, vai na raiz do projeto, entre na classe Application e clique em Executar/Run.
-![Execucao do ServiceUm](./service-um/image/execucao-do-serviceum.jpg)
 
 segue [link](https://github.com/RavikFerreira/ProjectTCC/tree/feature/service-um) do repositório pronto e funcionando.
 
