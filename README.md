@@ -1,4 +1,4 @@
-# CRIANDO CONFIGURAÇÃO DE MICRO SERVIÇO COM APACHE KAFKA
+# APÊNDICE II - TUTORIAL: CRIANDO CONFIGURAÇÃO DE MICRO SERVIÇO COM APACHE KAFKA
 
 Este documento fornece um guia para a criação e configuração de microsserviços com Apache Kafka usando Micronaut. O exemplo inclui dois microsserviços: `orchestrator-service` e `service-dois`. Ambos os serviços estão configurados para produzir e consumir mensagens usando Kafka.
 
