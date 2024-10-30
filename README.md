@@ -75,6 +75,7 @@ Para descobrir o ip: deve abrir o CMD e digitar ipconfig e procure pelo endereç
 ````shell
 ipconfig
 ````
+![CMD](./orchestrator-service/image/cmd-ipconfig.png)
 
 Com isso, é necessario rodar essas aplicações em containers, então é importante seguir o **"TUTORIAL BÁSICO DOCKER E DOCKERFILE:"**
 
@@ -89,6 +90,7 @@ Deve verificar se o Prometheus está com o state **UP**:
 2. Click em Status > Targets, com isso deve aparecer todos os microsserviços configurados no **prometheus.yml** e o State UP em todos
 3. Caso o State não esteja 'UP', deverá rever as configurações do **prometheus.yml**
 
+![Prometheus](./orchestrator-service/image/prometheus.PNG)
 
 Já no Grafana deve-se seguir esses passos:
 1. Entrar no link localhost:3000, que é o WebSite do Grafana
@@ -109,5 +111,7 @@ Agora vamos procurar um dashboard interessante de fácil análise:
 4. Em Get this dashboard,  procure por Import the dashboard template e copie o ID:
 5. Com isso, de volta ao site, vá em Home > Dashboards > Create Dashboard > Import Dashboard, é só colocar o ID e clicar em Load
 6. Select a Prometheus Data source,  escolha o prometheus e clique em Import.
+
+![Grafana](./orchestrator-service/image/demo-grafana.png)
 
 Com isso, podemos seguir para o [ultimo passo](https://github.com/RavikFerreira/ProjectTCC/edit/feature/docker/README.md), em que vamos aprender um pouco mais sobre como criar os containers em todos os serviços!
