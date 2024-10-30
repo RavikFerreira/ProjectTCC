@@ -295,3 +295,5 @@ Por fim, na pasta raiz dos projetos onde contém todos os micro serviços digite
 docker-compose up --build -d
 ````
 Com isso, os container vão aparecer rodando dentro do Docker Desktop ou no terminal após digitar o comando docker ps.
+
+![Docker](./orchestrator-service/image/docker.png)
