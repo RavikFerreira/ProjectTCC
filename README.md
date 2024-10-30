@@ -932,7 +932,6 @@ public void consumerPaymentFailEvent(String payload){
 
 Para executar o projeto deve executar todos os microsserviços e executar os passos nesse **[link](https://github.com/RavikFerreira/ProjectTCC/blob/feature/docker/README.md)**, realizar os passos no topico **COMO CRIAR CONTAINERS COM DOCKER-COMPOSE E BAIXAR AS IMAGES** ,**COMO CRIAR CONTAINERS DO KAFKA E REDPANDA NO DOCKER** e **COMO INICIAR TODOS OS CONTAINERS**
 
-![Execucao das image do kafka e redpanda no docker](./orchestrator-service/image/exemplo-de-container-docker.jpg)
 
 Com isso deverá aparecer dessa forma!
 
