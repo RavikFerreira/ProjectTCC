@@ -110,6 +110,4 @@ Agora vamos procurar um dashboard interessante de fácil análise:
 5. Com isso, de volta ao site, vá em Home > Dashboards > Create Dashboard > Import Dashboard, é só colocar o ID e clicar em Load
 6. Select a Prometheus Data source,  escolha o prometheus e clique em Import.
 
-![Grafana](./orchestrator-service/image/demo-grafana.png)
-
 Com isso, podemos seguir para o [ultimo passo](https://github.com/RavikFerreira/ProjectTCC/edit/feature/docker/README.md), em que vamos aprender um pouco mais sobre como criar os containers em todos os serviços!
