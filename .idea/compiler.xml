@@ -52,6 +52,9 @@
         <module name="service-um" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="orchestrator-service" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
