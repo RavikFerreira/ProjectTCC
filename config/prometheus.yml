@@ -11,8 +11,3 @@ scrape_configs:
     metrics_path: /prometheus
     static_configs:
       - targets: ["orchestrator-service:8585"]
-
-  - job_name: "services-dois"
-    metrics_path: /prometheus
-    static_configs:
-      - targets: ["services-dois:8084"]
