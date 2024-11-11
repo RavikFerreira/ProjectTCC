@@ -1,0 +1,4 @@
+com\serviceum\$ServiceUmTest$Definition.class
+com\serviceum\ServiceUmTest.class
+META-INF\micronaut\io.micronaut.inject.BeanDefinitionReference\com.serviceum.$ServiceUmTest$Definition
+com\serviceum\$ServiceUmTest$Definition$Exec.class
