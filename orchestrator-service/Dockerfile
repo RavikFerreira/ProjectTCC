@@ -1,4 +1,4 @@
 FROM openjdk:21
-COPY target/*.jar app.jar
+COPY target/orchestrator-service-0.1.jar app.jar
 EXPOSE 8585
 ENTRYPOINT ["java", "-jar", "app.jar"]

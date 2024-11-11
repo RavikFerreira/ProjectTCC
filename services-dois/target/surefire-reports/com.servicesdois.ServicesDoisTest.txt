@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.servicesdois.ServicesDoisTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.148 s -- in com.servicesdois.ServicesDoisTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 61.52 s -- in com.servicesdois.ServicesDoisTest
