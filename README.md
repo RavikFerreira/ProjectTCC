@@ -7,13 +7,7 @@ As aplicações são **containerizadas** com **Docker**, o que garante ambientes
 - **Micrometer** para coleta de métricas diretamente integradas no Micronaut.
 - **Prometheus** para armazenar e consultar essas métricas.
 - **Grafana** para visualização de dados em **dashboards interativos** e acompanhamento de desempenho do sistema.
-## SUMÁRIO
-Segue a sequência dos passos que devem ser seguidos nas branchers:
-1. master
-2. feature/service-um
-3. feature/orchestrator-service
-4. feature/micrometer
-5. feature/docker
+
 ## 🛠️ Tecnologias Utilizadas
 
 - **Java 21**: Nova versão do Java, trazendo melhorias de performance e novos recursos.
